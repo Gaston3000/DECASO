@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DeCaso - Portafolio</title>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+  <header class="header">
+    <span class="header__laser" aria-hidden="true"></span>
+    <span class="header__shockwave" aria-hidden="true"></span>
+    <div class="header__inner">
+      <a class="logo" href="../inicio/">
+        <img class="logo__img" src="../fotos/logo decaso.png" alt="Logo DeCaso" />
+      </a>
+
+      <nav class="nav" aria-label="Principal">
+        <button class="mobile-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu">
+          Menu
+        </button>
+        <ul class="nav__list">
+          <li>
+            <a class="nav__link" href="../inicio/">
+              <span class="nav__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 8h-3v10h-5v-6H11v6H6V11H3l9-8z" /></svg>
+              </span>
+              Inicio
+            </a>
+          </li>
+          <li>
+            <a class="nav__link" href="../marketing/">
+              <span class="nav__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-4 12.8V17h8v-2.2A7 7 0 0 0 12 2zm3 12.2-1 1.1V15h-4v-1.7l-1-1.1a5 5 0 1 1 6 0zM9 21h6v-2H9v2z" /></svg>
+              </span>
+              Marketing
+            </a>
+          </li>
+          <li>
+            <a class="nav__link" href="../diseno/">
+              <span class="nav__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21l3-1 11-11-2-2L4 18l-1 3zm11-15 2 2 2-2-2-2-2 2z" /></svg>
+              </span>
+              Diseño
+            </a>
+          </li>
+          <li>
+            <a class="nav__link" href="../desarrollo/">
+              <span class="nav__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l-5 7 5 7h3L6 12l5-7H8zm8 0h-3l5 7-5 7h3l5-7-5-7z" /></svg>
+              </span>
+              Desarrollo
+            </a>
+          </li>
+          <li>
+            <a class="nav__link" href="../portafolio/">
+              <span class="nav__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h6zm10 4H4v10h16V8z" /></svg>
+              </span>
+              Portafolio
+            </a>
+          </li>
+        </ul>
+        <ul class="nav__list nav__list--mobile" id="mobile-menu">
+          <li>
+            <a class="nav__link" href="../inicio/">
+              <span class="nav__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 8h-3v10h-5v-6H11v6H6V11H3l9-8z" /></svg>
+              </span>
+              Inicio
+            </a>
+          </li>
+          <li>
+            <a class="nav__link" href="../marketing/">
+              <span class="nav__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-4 12.8V17h8v-2.2A7 7 0 0 0 12 2zm3 12.2-1 1.1V15h-4v-1.7l-1-1.1a5 5 0 1 1 6 0zM9 21h6v-2H9v2z" /></svg>
+              </span>
+              Marketing
+            </a>
+          </li>
+          <li>
+            <a class="nav__link" href="../diseno/">
+              <span class="nav__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21l3-1 11-11-2-2L4 18l-1 3zm11-15 2 2 2-2-2-2-2 2z" /></svg>
+              </span>
+              Diseño
+            </a>
+          </li>
+          <li>
+            <a class="nav__link" href="../desarrollo/">
+              <span class="nav__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l-5 7 5 7h3L6 12l5-7H8zm8 0h-3l5 7-5 7h3l5-7-5-7z" /></svg>
+              </span>
+              Desarrollo
+            </a>
+          </li>
+          <li>
+            <a class="nav__link" href="../portafolio/">
+              <span class="nav__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h6zm10 4H4v10h16V8z" /></svg>
+              </span>
+              Portafolio
+            </a>
+          </li>
+          <li>
+            <a class="nav__link" href="../contactanos/">
+              <span class="nav__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0-0.001-8.001A4 4 0 0 0 12 12zm0 2c-4 0-7 2-7 4v2h14v-2c0-2-3-4-7-4z" /></svg>
+              </span>
+              Contactanos
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="cta">
+        <a class="cta__button" href="../contactanos/">
+          <span class="cta__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0-0.001-8.001A4 4 0 0 0 12 12zm0 2c-4 0-7 2-7 4v2h14v-2c0-2-3-4-7-4z" /></svg>
+          </span>
+          Contactanos
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="portfolio" id="portafolio">
+    <section class="portfolio__intro">
+      <div class="portfolio__headline">
+        <p class="portfolio__eyebrow">TODOS NUESTROS TRABAJOS</p>
+        <p class="portfolio__meta">+20 Proyectos Terminados</p>
+      </div>
+      <p class="portfolio__pitch">
+        20 marcas ya renovaron su identidad con nosotros. ¿Listo para que tu proyecto destaque?
+      </p>
+    </section>
+
+    <section class="portfolio__layout">
+      <aside class="portfolio__filters" aria-label="Filtros de portafolio">
+        <div class="filter-panel">
+          <h2 class="filter-panel__title">Filtrar proyectos</h2>
+
+          <details class="filter" open>
+            <summary>
+              Industrias
+              <span class="filter__arrow" aria-hidden="true"></span>
+            </summary>
+            <div class="filter__content" data-filter-group="industry">
+              <label><input type="checkbox" value="gastronomia" />Gastronomia</label>
+              <label><input type="checkbox" value="tatto" />Tatto</label>
+              <label><input type="checkbox" value="industria" />Industria</label>
+              <label><input type="checkbox" value="higiene-limpieza" />Higiene y Limpieza</label>
+            </div>
+          </details>
+
+          <details class="filter">
+            <summary>
+              Servicios
+              <span class="filter__arrow" aria-hidden="true"></span>
+            </summary>
+            <div class="filter__content" data-filter-group="service">
+              <label><input type="checkbox" value="branding" />Branding</label>
+              <label><input type="checkbox" value="web" />Web</label>
+              <label><input type="checkbox" value="marketing" />Marketing</label>
+              <label><input type="checkbox" value="ecommerce" />Ecommerce</label>
+            </div>
+          </details>
+
+          <details class="filter">
+            <summary>
+              Paises
+              <span class="filter__arrow" aria-hidden="true"></span>
+            </summary>
+            <div class="filter__content" data-filter-group="country">
+              <label><input type="checkbox" value="argentina" />Argentina</label>
+              <label><input type="checkbox" value="mexico" />Mexico</label>
+              <label><input type="checkbox" value="chile" />Chile</label>
+              <label><input type="checkbox" value="usa" />Estados Unidos</label>
+            </div>
+          </details>
+        </div>
+      </aside>
+
+      <section class="portfolio__grid" aria-label="Proyectos">
+        <article class="portfolio-card" role="link" tabindex="0" data-href="../clientes/the-little-pig/" aria-label="Ver proyecto The Little Pig" data-industry="gastronomia" data-service="branding,marketing" data-country="usa">
+          <div class="portfolio-card__media" style="background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(20, 20, 26, 0.2)), url('../fotos/Titulo The little Pig.png');"></div>
+          <div class="portfolio-card__body">
+            <span class="portfolio-card__tag">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18v2H3v-2zm2-7h14v2H5V5zm2 14h10v2H7v-2z" /></svg>
+              Gastronomia
+            </span>
+            <div class="portfolio-card__title-row">
+              <span class="portfolio-card__flag portfolio-card__flag--us" aria-label="Estados Unidos" title="Estados Unidos"></span>
+              <a class="portfolio-card__title-link" href="https://www.thelittlepigbk.com/" target="_blank" rel="noopener noreferrer">The Little Pig</a>
+            </div>
+            <p>Identidad y sitio con foco en reservas, experiencia premium y conversion.</p>
+          </div>
+        </article>
+
+        <article class="portfolio-card" role="link" tabindex="0" data-href="../clientes/lelita/" aria-label="Ver proyecto LELITA" data-industry="industria" data-service="branding,web" data-country="argentina">
+          <div class="portfolio-card__media" style="background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(20, 20, 26, 0.2)), url('../fotos/LELITA.png');"></div>
+          <div class="portfolio-card__body">
+            <span class="portfolio-card__tag">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16v-2H4v2zm2-4h3v-4H6v4zm5 0h3V8h-3v8zm5 0h3v-6h-3v6z" /></svg>
+              Industria
+            </span>
+            <div class="portfolio-card__title-row">
+              <span class="portfolio-card__flag portfolio-card__flag--ar" aria-label="Argentina" title="Argentina"></span>
+              <a class="portfolio-card__title-link" href="https://lelita.com.ar/" target="_blank" rel="noopener noreferrer">LELITA</a>
+            </div>
+            <p>Identidad visual y web corporativa con narrativa tecnica clara.</p>
+          </div>
+        </article>
+
+        <article class="portfolio-card" role="link" tabindex="0" data-href="../clientes/la-boutique-de-la-limpieza/" aria-label="Ver proyecto La boutique de la limpieza" data-industry="higiene-limpieza" data-service="web" data-country="argentina">
+          <div class="portfolio-card__media" style="background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(20, 20, 26, 0.2)), url('../fotos/logo Boutique Desktop HD.png');"></div>
+          <div class="portfolio-card__body">
+            <span class="portfolio-card__tag">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4zM2 4v16h20V4H2zm6 14H6v-2h2v2zm0-4H6v-2h2v2z" /></svg>
+              Higiene y Limpieza
+            </span>
+            <div class="portfolio-card__title-row">
+              <span class="portfolio-card__flag portfolio-card__flag--ar" aria-label="Argentina" title="Argentina"></span>
+              <a class="portfolio-card__title-link" href="https://www.laboutiquedelalimpieza.com.ar/" target="_blank" rel="noopener noreferrer">La boutique de la limpieza</a>
+            </div>
+            <p>Presencia digital clara para generar consultas y ventas directas.</p>
+          </div>
+        </article>
+
+        <article class="portfolio-card" role="link" tabindex="0" data-href="../clientes/puertas-rapidas-industriales/" aria-label="Ver proyecto Puertas rapidas industriales" data-industry="industria" data-service="branding,web" data-country="argentina">
+          <div class="portfolio-card__media" style="background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(20, 20, 26, 0.2)), url('../fotos/Puertas\ rapidas\ industriales.png');"></div>
+          <div class="portfolio-card__body">
+            <span class="portfolio-card__tag">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l4 4h4l-4 16H8L4 6h4l4-4z" /></svg>
+              Industria
+            </span>
+            <div class="portfolio-card__title-row">
+              <span class="portfolio-card__flag portfolio-card__flag--ar" aria-label="Argentina" title="Argentina"></span>
+              <a class="portfolio-card__title-link" href="https://puertasrapidasindustrailes.com.ar/" target="_blank" rel="noopener noreferrer">Puertas rapidas industriales</a>
+            </div>
+            <p>Web B2B con foco en producto, velocidad y conversion tecnica.</p>
+          </div>
+        </article>
+
+        <article class="portfolio-card" role="link" tabindex="0" data-href="../clientes/art-ink/" aria-label="Ver proyecto ART INK" data-industry="tatto" data-service="branding,web" data-country="usa">
+          <div class="portfolio-card__media"></div>
+          <div class="portfolio-card__body">
+            <span class="portfolio-card__tag">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l8 4v8l-8 4-8-4V8l8-4zm0 2.2L6 9v6l6 2.8L18 15V9l-6-2.8z" /></svg>
+              Tatto
+            </span>
+            <div class="portfolio-card__title-row">
+              <span class="portfolio-card__flag portfolio-card__flag--us" aria-label="Estados Unidos" title="Estados Unidos"></span>
+              <a class="portfolio-card__title-link" href="https://artinktattoostudio.com/" target="_blank" rel="noopener noreferrer">ART INK</a>
+            </div>
+            <p>Identidad visual y portfolio digital con foco en reserva directa.</p>
+          </div>
+        </article>
+
+        <article class="portfolio-card" role="link" tabindex="0" data-href="../clientes/moon-cartridges/" aria-label="Ver proyecto Moon Cartridges" data-industry="industria" data-service="branding,web" data-country="usa">
+          <div class="portfolio-card__media"></div>
+          <div class="portfolio-card__body">
+            <span class="portfolio-card__tag">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h2v18H7V3zm8 0h2v18h-2V3z" /></svg>
+              Industria
+            </span>
+            <div class="portfolio-card__title-row">
+              <span class="portfolio-card__flag portfolio-card__flag--us" aria-label="Estados Unidos" title="Estados Unidos"></span>
+              <a class="portfolio-card__title-link" href="https://www.mooncartridges.com" target="_blank" rel="noopener noreferrer">Moon Cartridges</a>
+            </div>
+            <p>Landing corporativa con foco en performance y claridad tecnica.</p>
+          </div>
+        </article>
+
+        <article class="portfolio-card" role="link" tabindex="0" data-href="../clientes/lead-heaven/" aria-label="Ver proyecto Lead Heaven" data-industry="industria" data-service="marketing,web" data-country="usa">
+          <div class="portfolio-card__media"></div>
+          <div class="portfolio-card__body">
+            <span class="portfolio-card__tag">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l8 4v8l-8 4-8-4V8l8-4zm0 2.2L6 9v6l6 2.8L18 15V9l-6-2.8z" /></svg>
+              Industria
+            </span>
+            <div class="portfolio-card__title-row">
+              <span class="portfolio-card__flag portfolio-card__flag--us" aria-label="Estados Unidos" title="Estados Unidos"></span>
+              <span class="portfolio-card__title-link is-disabled">Lead Heaven</span>
+            </div>
+            <p>Sitio comercial con foco en generacion de leads y autoridad.</p>
+          </div>
+        </article>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer" aria-label="Footer">
+    <div class="site-footer__grid">
+      <div class="site-footer__help">
+        <p class="site-footer__eyebrow">¿Necesitas ayuda?</p>
+        <p class="site-footer__title">Llamanos</p>
+        <div class="site-footer__contact">
+          <span class="site-footer__label">USA</span>
+          <span class="site-footer__value">+1 (720) 653-5266</span>
+        </div>
+        <div class="site-footer__contact">
+          <span class="site-footer__label">ARG</span>
+          <span class="site-footer__value">+54 9 11 4048-6698</span>
+        </div>
+      </div>
+
+      <div class="site-footer__brand">
+        <img class="site-footer__logo" src="../fotos/logo decaso.png" alt="Logo DeCaso" />
+        <p class="site-footer__legal">Todos los derechos reservados.</p>
+      </div>
+
+      <div class="site-footer__social">
+        <a class="site-footer__social-link" href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2c-.3-1-1.1-1.8-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5c-1 .3-1.8 1.1-2.1 2.1C2 9 2 12 2 12s0 3 .4 4.8c.3 1 1.1 1.8 2.1 2.1 1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5c1-.3 1.8-1.1 2.1-2.1.4-1.8.4-4.8.4-4.8s0-3-.4-4.8zM10 15.2V8.8l5.4 3.2-5.4 3.2z" /></svg>
+        </a>
+        <a class="site-footer__social-link" href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.3a4.7 4.7 0 1 0 0 9.4 4.7 4.7 0 0 0 0-9.4zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zM18 6.5a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2z" /><path d="M7.2 3.5h9.6A3.7 3.7 0 0 1 20.5 7.2v9.6a3.7 3.7 0 0 1-3.7 3.7H7.2a3.7 3.7 0 0 1-3.7-3.7V7.2a3.7 3.7 0 0 1 3.7-3.7zm0 1.7A2 2 0 0 0 5.2 7.2v9.6a2 2 0 0 0 2 2h9.6a2 2 0 0 0 2-2V7.2a2 2 0 0 0-2-2H7.2z" /></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
