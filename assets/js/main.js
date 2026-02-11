@@ -360,6 +360,52 @@ if (worksPanel) {
 
   const extractText = (node) => (node ? node.textContent.trim() : '');
 
+  const normalizeText = (value) =>
+    (value || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+
+  const normalizeFeatureText = (value) => normalizeText(value);
+
+  const getFeatureIconSvg = (label) => {
+    const text = normalizeFeatureText(label);
+
+    if (text.includes('reserva')) {
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h2v2h6V2h2v2h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h3V2zm13 8H4v10h16V10zM6 12h4v4H6v-4z" /></svg>';
+    }
+
+    if (text.includes('pick') || text.includes('delivery') || text.includes('envio') || text.includes('retiro')) {
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h12v10H3V6zm12 3h3l3 3v4h-6V9zm-9 9h2a2 2 0 0 1-4 0h2zm10 0h2a2 2 0 0 1-4 0h2z" /></svg>';
+    }
+
+    if (text.includes('galeria') || text.includes('foto') || text.includes('image') || text.includes('imagen')) {
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm0 12h16l-5-6-4 5-3-3-4 4z" /></svg>';
+    }
+
+    if (text.includes('mobile') || text.includes('responsive') || text.includes('celular')) {
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm5 17a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" /></svg>';
+    }
+
+    if (text.includes('carta') || text.includes('menu')) {
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V3zm2 2v14h12V5H6zm2 3h8v2H8V8zm0 4h8v2H8v-2z" /></svg>';
+    }
+
+    if (text.includes('multi') || text.includes('idioma') || text.includes('language')) {
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm6 8h-3.3a14.8 14.8 0 0 0-1.2-4.1A8.1 8.1 0 0 1 18 10zM12 4a12.6 12.6 0 0 1 1.7 6H10.3A12.6 12.6 0 0 1 12 4zM6.5 5.9A14.8 14.8 0 0 0 5.3 10H2.9a8.1 8.1 0 0 1 3.6-4.1zM4 12h3.3a14.8 14.8 0 0 0 1.2 4.1A8.1 8.1 0 0 1 4 12zm8 8a12.6 12.6 0 0 1-1.7-6h3.4A12.6 12.6 0 0 1 12 20zm5.5-1.9a14.8 14.8 0 0 0 1.2-4.1h2.4a8.1 8.1 0 0 1-3.6 4.1z" /></svg>';
+    }
+
+    if (text.includes('contacto') || text.includes('whatsapp') || text.includes('mensaje')) {
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.7 13.7L3 21l4.5-1.2A9 9 0 1 0 12 3zm0 2a7 7 0 0 1 5.9 10.7l-.3.5.8 2.9-2.9-.8-.5.3A7 7 0 1 1 12 5z" /></svg>';
+    }
+
+    if (text.includes('experiencia') || text.includes('cliente') || text.includes('ux')) {
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.6-7 10-7 10z" /></svg>';
+    }
+
+    return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 5 5.6.8-4 3.9.9 5.6L12 15.8 7.1 17.3l.9-5.6-4-3.9 5.6-.8L12 2z" /></svg>';
+  };
+
   const fetchPortfolioProjects = async () => {
     try {
       const response = await fetch('../portafolio/');
@@ -441,18 +487,45 @@ if (worksPanel) {
 
     if (worksFeatures) {
       const items = project.features && project.features.length > 0 ? project.features : fallbackFeatures;
-      worksFeatures.innerHTML = items.map((item) => `<li>${item}</li>`).join('');
+      worksFeatures.innerHTML = items
+        .map((item) => {
+          const icon = getFeatureIconSvg(item);
+          return `<li><span class="works__feature-icon" aria-hidden="true">${icon}</span><span>${item}</span></li>`;
+        })
+        .join('');
     }
 
     if (worksImage) {
-      if (project.image) {
-        worksImage.style.backgroundImage = `url(${project.image})`;
-        worksImage.style.backgroundSize = 'cover';
-        worksImage.style.backgroundPosition = 'center';
-      } else {
+      const normalizedClient = normalizeText(project.client);
+      const isLelita = normalizedClient.includes('lelita');
+
+      if (isLelita) {
+        const thumbs = [
+          { src: '../fotos/LELITA captura 1.png', alt: 'LELITA captura 1' },
+          { src: '../fotos/LELITA captura 2.png', alt: 'LELITA captura 2' },
+          { src: '../fotos/LELITA captura 3.png', alt: 'LELITA captura 3' }
+        ];
+
+        worksImage.classList.add('is-thumbs');
         worksImage.style.backgroundImage = '';
         worksImage.style.backgroundSize = '';
         worksImage.style.backgroundPosition = '';
+        worksImage.innerHTML = thumbs
+          .map((thumb) => `<img class="works__thumb" src="${thumb.src}" alt="${thumb.alt}" loading="lazy" />`)
+          .join('');
+      } else {
+        worksImage.classList.remove('is-thumbs');
+        worksImage.innerHTML = '';
+
+        if (project.image) {
+          worksImage.style.backgroundImage = `url(${project.image})`;
+          worksImage.style.backgroundSize = 'cover';
+          worksImage.style.backgroundPosition = 'center';
+        } else {
+          worksImage.style.backgroundImage = '';
+          worksImage.style.backgroundSize = '';
+          worksImage.style.backgroundPosition = '';
+        }
       }
     }
   };
