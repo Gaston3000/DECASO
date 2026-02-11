@@ -2,6 +2,8 @@
   --neon-red: #ff1e1e;
   --neon-red-soft: rgba(255, 30, 30, 0.35);
   --neon-red-faint: rgba(255, 30, 30, 0.18);
+  --neon-cyan: #3cf8ff;
+  --neon-cyan-soft: rgba(60, 248, 255, 0.35);
   --glass-bg: rgba(10, 10, 16, 0.45);
   --glass-border: rgba(255, 255, 255, 0.15);
   --text-white: #ffffff;
@@ -233,14 +235,14 @@ body {
   height: 3px;
   margin: 18px 0 10px;
   border-radius: 999px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.9), rgba(255, 30, 30, 0.5));
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.9), var(--neon-cyan-soft));
   box-shadow: 0 0 18px rgba(255, 255, 255, 0.35);
 }
 
 .hero__copy {
   margin-top: 16px;
   max-width: 520px;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.9);
   line-height: 1.65;
   font-size: 1.05rem;
   padding-bottom: 24px;
@@ -449,6 +451,20 @@ body {
   transition: box-shadow 0.35s ease, transform 0.35s ease;
 }
 
+.hero__media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(transparent 96%, rgba(255, 255, 255, 0.08) 97%),
+    linear-gradient(90deg, transparent 96%, rgba(255, 255, 255, 0.06) 97%),
+    radial-gradient(circle at 30% 20%, rgba(60, 248, 255, 0.18), transparent 55%);
+  background-size: 22px 22px, 22px 22px, 100% 100%;
+  opacity: 0.2;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: heroMediaScan 8s linear infinite;
+}
+
 .hero__media::after {
   content: "";
   position: absolute;
@@ -475,6 +491,7 @@ body {
   justify-content: center;
   background: rgba(255, 255, 255, 0.08);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
+  box-shadow: 0 0 16px rgba(60, 248, 255, 0.2), inset 0 0 16px rgba(255, 255, 255, 0.12);
 }
 
 .hero__play svg {
@@ -520,8 +537,22 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
   transition: flex 0.45s ease-in-out, height 0.45s ease-in-out, box-shadow 0.45s ease-in-out,
     transform 0.45s ease-in-out, border-color 0.45s ease-in-out;
+}
+
+.services__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(130deg, rgba(255, 255, 255, 0.12), transparent 45%),
+    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.08), transparent 55%),
+    radial-gradient(circle at 82% 60%, rgba(60, 248, 255, 0.08), transparent 60%);
+  opacity: 0.18;
+  mix-blend-mode: screen;
+  pointer-events: none;
 }
 
 .services__card.is-active {
@@ -617,7 +648,7 @@ body {
   list-style: none;
   display: grid;
   gap: 12px;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.82);
   line-height: 1.6;
 }
 
@@ -707,6 +738,20 @@ body {
     outline: none;
   }
 
+  .global-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-image: linear-gradient(140deg, rgba(255, 255, 255, 0.12), transparent 40%),
+      radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.1), transparent 55%),
+      radial-gradient(circle at 78% 64%, rgba(60, 248, 255, 0.1), transparent 60%);
+    opacity: 0.16;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    z-index: 1;
+  }
+
   .global-card::after {
     content: "";
     position: absolute;
@@ -720,7 +765,7 @@ body {
 
   .global-card__map {
     position: relative;
-    min-height: 212px;
+    min-height: 220px;
     border-radius: 24px;
     background: radial-gradient(circle at top, rgba(255, 255, 255, 0.06), transparent 55%);
     overflow: hidden;
@@ -743,7 +788,7 @@ body {
     position: absolute;
     inset: 0;
     background-image: url("../../fotos/mapa estados unidos.png");
-    background-size: cover;
+    background-size: 86% auto;
     background-position: center;
     background-repeat: no-repeat;
     opacity: 0.85;
@@ -755,7 +800,7 @@ body {
 
   .global-card__map--ba::before {
     background-image: url("../../fotos/mapa Argentina.png");
-    background-size: 38% auto;
+    background-size: 34% auto;
     filter: brightness(0.6) contrast(1.35) drop-shadow(0 0 4px rgba(0, 0, 0, 0.65))
       drop-shadow(0 0 10px rgba(0, 0, 0, 0.4));
     mix-blend-mode: normal;
@@ -767,7 +812,7 @@ body {
     position: absolute;
     inset: 0;
     background-image: url("../../fotos/mapa Argentina.png");
-    background-size: 38% auto;
+    background-size: 34% auto;
     background-position: center;
     background-repeat: no-repeat;
     opacity: 0.75;
@@ -781,9 +826,8 @@ body {
   .global-card__map--ny,
   .global-card__map--mia,
   .global-card__map--ba {
-    min-height: 250px;
-    padding-bottom: 58px;
-    overflow: visible;
+    min-height: 220px;
+    overflow: hidden;
   }
 
   .global__map {
@@ -804,7 +848,7 @@ body {
     height: 10px;
     border-radius: 50%;
     background: var(--neon-red);
-    box-shadow: 0 0 12px rgba(255, 30, 30, 0.7), 0 0 24px rgba(255, 30, 30, 0.45);
+    box-shadow: 0 0 12px rgba(255, 30, 30, 0.7), 0 0 24px rgba(255, 30, 30, 0.45), 0 0 18px rgba(60, 248, 255, 0.45);
     animation: globalPulse 2.6s ease-in-out infinite;
     z-index: 3;
   }
@@ -828,7 +872,7 @@ body {
   }
 
   .global__spark--ny {
-    top: 22%;
+    top: 23%;
     left: 68%;
   }
 
@@ -849,7 +893,7 @@ body {
 
   .global__spark--ba {
     top: 22%;
-    left: 48%;
+    left: 49%;
   }
 
   .global-card__content {
@@ -1029,6 +1073,19 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.16);
     box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45), inset 0 0 30px rgba(255, 255, 255, 0.06);
     backdrop-filter: blur(16px);
+    overflow: hidden;
+  }
+
+  .works__panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(130deg, rgba(255, 255, 255, 0.12), transparent 45%),
+      radial-gradient(circle at 16% 20%, rgba(255, 255, 255, 0.08), transparent 55%),
+      radial-gradient(circle at 80% 70%, rgba(60, 248, 255, 0.08), transparent 60%);
+    opacity: 0.18;
+    mix-blend-mode: screen;
+    pointer-events: none;
   }
 
   .works__header {
@@ -1080,7 +1137,7 @@ body {
   }
 
   .works__description {
-    color: rgba(255, 255, 255, 0.78);
+    color: rgba(255, 255, 255, 0.85);
     line-height: 1.7;
     font-size: 0.98rem;
   }
@@ -1090,7 +1147,7 @@ body {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px 14px;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.82);
     font-size: 0.9rem;
   }
 
@@ -1106,8 +1163,91 @@ body {
     height: 24px;
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    background: radial-gradient(circle at 30% 30%, rgba(255, 30, 30, 0.5), rgba(10, 10, 16, 0.8));
-    box-shadow: 0 0 12px rgba(255, 30, 30, 0.25);
+    background: radial-gradient(circle at 30% 30%, rgba(60, 248, 255, 0.55), rgba(10, 10, 16, 0.8));
+    box-shadow: 0 0 12px rgba(60, 248, 255, 0.25);
+  }
+
+  .hero__eyebrow,
+  .hero__title,
+  .hero__line,
+  .hero__copy,
+  .hero__chips,
+  .hero__footer,
+  .hero__media {
+    animation: heroIntro 0.9s ease both;
+  }
+
+  .hero__eyebrow {
+    animation-delay: 0.05s;
+  }
+
+  .hero__title {
+    animation-delay: 0.12s;
+  }
+
+  .hero__line {
+    animation-delay: 0.2s;
+  }
+
+  .hero__copy {
+    animation-delay: 0.28s;
+  }
+
+  .hero__chips {
+    animation-delay: 0.36s;
+  }
+
+  .hero__footer {
+    animation-delay: 0.44s;
+  }
+
+  .hero__media {
+    animation-delay: 0.32s;
+  }
+
+  .hero__button:focus-visible,
+  .works__button:focus-visible,
+  .works__nav-btn:focus-visible,
+  .services__toggle:focus-visible,
+  .cta__button:focus-visible,
+  .mobile-toggle:focus-visible,
+  .nav__link:focus-visible {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35), 0 0 18px var(--neon-cyan-soft);
+  }
+
+  @keyframes heroIntro {
+    0% {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes heroMediaScan {
+    0% {
+      background-position: 0 0, 0 0, 0 0;
+    }
+    100% {
+      background-position: 0 24px, 24px 0, 0 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__eyebrow,
+    .hero__title,
+    .hero__line,
+    .hero__copy,
+    .hero__chips,
+    .hero__footer,
+    .hero__media,
+    .hero__media::before {
+      animation: none;
+    }
   }
 
   .works__button {
@@ -2654,7 +2794,11 @@ body {
   overflow: hidden;
 }
 
-
+.folder-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
   background-image: radial-gradient(1px 1px at 12% 20%, rgba(255, 255, 255, 0.25) 0, transparent 2px),
     radial-gradient(1px 1px at 28% 72%, rgba(255, 255, 255, 0.2) 0, transparent 2px),
     radial-gradient(1px 1px at 45% 38%, rgba(255, 255, 255, 0.18) 0, transparent 2px),
@@ -2662,27 +2806,39 @@ body {
     radial-gradient(1px 1px at 78% 66%, rgba(255, 255, 255, 0.16) 0, transparent 2px),
     radial-gradient(1px 1px at 88% 34%, rgba(255, 255, 255, 0.24) 0, transparent 2px);
   opacity: 0.45;
+  pointer-events: none;
+  transition: opacity 0.4s ease, background 0.4s ease;
+}
 
 .folder-card:hover {
   box-shadow: 0 20px 50px rgba(255, 30, 30, 0.12), 0 0 26px rgba(255, 30, 30, 0.12);
   transform: translateY(-2px);
 }
+
+.folder-card:hover::before {
   background: radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.04), transparent 40%),
     radial-gradient(circle at 75% 15%, rgba(255, 60, 50, 0.12), transparent 55%),
     radial-gradient(circle at 50% 90%, rgba(255, 255, 255, 0.03), transparent 45%);
   opacity: 0.55;
 }
 
+.form {
+  display: grid;
+  gap: 18px;
+}
+
 .form__row {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
+  align-items: start;
 }
 
 .field {
   position: relative;
   display: grid;
   gap: 8px;
+  min-width: 0;
 }
 
 .field__label {
@@ -2695,6 +2851,7 @@ body {
 .field input,
 .field textarea {
   width: 100%;
+  display: block;
   background: transparent;
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
