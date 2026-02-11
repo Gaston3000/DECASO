@@ -5,6 +5,7 @@ const desktopNavList = document.querySelector('.nav__list:not(.nav__list--mobile
 const desktopNavLinks = desktopNavList ? desktopNavList.querySelectorAll('.nav__link') : [];
 const header = document.querySelector('.header');
 const logoIcon = document.querySelector('.logo__icon');
+const ctaButton = document.querySelector('.cta__button');
 
 if (toggle && mobileMenu) {
   toggle.addEventListener('click', () => {
@@ -104,9 +105,30 @@ const triggerIntroEffects = () => {
   }
 };
 
+const triggerIconPulse = (target) => {
+  if (!target) return;
+  target.classList.remove('icon-pulse');
+  void target.offsetWidth;
+  target.classList.add('icon-pulse');
+};
+
+const bindIconPulse = (el) => {
+  if (!el) return;
+  el.addEventListener('pointerdown', () => triggerIconPulse(el));
+  el.addEventListener('click', () => triggerIconPulse(el));
+  el.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      triggerIconPulse(el);
+    }
+  });
+};
+
 applyActiveNav();
 animateUnderline();
 triggerIntroEffects();
+
+navLinks.forEach((link) => bindIconPulse(link));
+bindIconPulse(ctaButton);
 
 const portfolioSection = document.querySelector('.portfolio');
 
@@ -309,37 +331,107 @@ if (worksPanel) {
   const prevButton = document.querySelector('[data-work-prev]');
   const nextButton = document.querySelector('[data-work-next]');
 
-  const projects = [
-    {
-      client: 'The Little Pig',
-      description:
-        'Identidad digital con foco en reservas, visibilidad local y conversion directa.',
-      features: ['Reservas online', 'Pick up y delivery', 'Galeria interactiva', 'Mobile friendly'],
-      image: '',
-      link: '../clientes/the-little-pig/'
-    },
-    {
-      client: 'ART INK',
-      description:
-        'Portfolio digital con identidad fuerte y flujo de consulta optimizado.',
-      features: ['Reservas online', 'Pick up y delivery', 'Galeria interactiva', 'Mobile friendly'],
-      image: '',
-      link: '../clientes/art-ink/'
-    },
-    {
-      client: 'La boutique de la limpieza',
-      description:
-        'Sitio claro y directo para impulsar consultas y ventas recurrentes.',
-      features: ['Reservas online', 'Pick up y delivery', 'Galeria interactiva', 'Mobile friendly'],
-      image: '',
-      link: '../clientes/la-boutique-de-la-limpieza/'
-    }
-  ];
+  const fallbackFeatures = ['Reservas online', 'Pick up y delivery', 'Galeria interactiva', 'Mobile friendly'];
+  let projects = [];
 
   let activeIndex = 0;
   let isAnimating = false;
 
+  const extractCssUrl = (value) => {
+    if (!value) return '';
+    const match = value.match(/url\(['"]?([^'"]+)['"]?\)/i);
+    return match ? match[1] : '';
+  };
+
+  const extractHeroImage = (styleText) => {
+    if (!styleText) return '';
+    const match = styleText.match(/--case-hero-image:\s*url\(['"]?([^'"]+)['"]?\)/i);
+    return match ? match[1] : extractCssUrl(styleText);
+  };
+
+  const resolveUrl = (value, baseHref) => {
+    if (!value) return '';
+    try {
+      return new URL(value, baseHref).href;
+    } catch (error) {
+      return value;
+    }
+  };
+
+  const extractText = (node) => (node ? node.textContent.trim() : '');
+
+  const fetchPortfolioProjects = async () => {
+    try {
+      const response = await fetch('../portafolio/');
+      if (!response.ok) throw new Error('Portfolio fetch failed');
+      const html = await response.text();
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      const cards = Array.from(doc.querySelectorAll('.portfolio-card[data-href]'));
+
+      return cards.map((card) => {
+        const media = card.querySelector('.portfolio-card__media');
+        const title = card.querySelector('.portfolio-card__title-link');
+        const description = card.querySelector('.portfolio-card__body p');
+        const link = card.getAttribute('data-href') || '';
+
+        return {
+          client: extractText(title),
+          description: extractText(description),
+          features: [],
+          image: extractCssUrl(media ? media.getAttribute('style') : ''),
+          link
+        };
+      });
+    } catch (error) {
+      return [];
+    }
+  };
+
+  const enrichFromClientPage = async (project) => {
+    if (!project.link) return project;
+
+    try {
+      const baseUrl = new URL(project.link, window.location.href);
+      const response = await fetch(baseUrl.href);
+      if (!response.ok) throw new Error('Client fetch failed');
+      const html = await response.text();
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+
+      const descriptionNode =
+        doc.querySelector('.case-section.case-challenges .case-section__header p') ||
+        doc.querySelector('.case-results__text') ||
+        doc.querySelector('.case-hero__meta');
+
+      const challengeTitles = Array.from(doc.querySelectorAll('.case-challenge h3'))
+        .map((item) => item.textContent.trim())
+        .filter(Boolean);
+
+      const resultItems = Array.from(doc.querySelectorAll('.case-results__list li'))
+        .map((item) => item.textContent.trim())
+        .filter(Boolean);
+
+      const hero = doc.querySelector('.case-hero');
+      const heroStyle = hero ? hero.getAttribute('style') : '';
+      const heroImage = extractHeroImage(heroStyle);
+      const logo = doc.querySelector('.case-hero__logo');
+      const logoSrc = logo ? logo.getAttribute('src') : '';
+
+      const imageCandidate = heroImage || project.image || logoSrc;
+      const resolvedImage = resolveUrl(imageCandidate, baseUrl.href);
+
+      return {
+        ...project,
+        description: extractText(descriptionNode) || project.description,
+        features: challengeTitles.length > 0 ? challengeTitles : resultItems,
+        image: resolvedImage || project.image
+      };
+    } catch (error) {
+      return project;
+    }
+  };
+
   const applyProject = (index) => {
+    if (projects.length === 0) return;
     const project = projects[index];
     if (!project) return;
 
@@ -348,7 +440,7 @@ if (worksPanel) {
     if (worksLink) worksLink.setAttribute('href', project.link || '#');
 
     if (worksFeatures) {
-      const items = project.features || [];
+      const items = project.features && project.features.length > 0 ? project.features : fallbackFeatures;
       worksFeatures.innerHTML = items.map((item) => `<li>${item}</li>`).join('');
     }
 
@@ -366,7 +458,7 @@ if (worksPanel) {
   };
 
   const changeProject = (direction) => {
-    if (isAnimating) return;
+    if (isAnimating || projects.length === 0) return;
     isAnimating = true;
     worksPanel.classList.add('is-animating');
 
@@ -380,7 +472,21 @@ if (worksPanel) {
     }, 220);
   };
 
-  applyProject(activeIndex);
+  const loadProjects = async () => {
+    const portfolioProjects = await fetchPortfolioProjects();
+    if (portfolioProjects.length === 0) {
+      projects = [];
+      applyProject(activeIndex);
+      return;
+    }
+
+    const enriched = await Promise.all(portfolioProjects.map(enrichFromClientPage));
+    projects = enriched;
+    activeIndex = 0;
+    applyProject(activeIndex);
+  };
+
+  loadProjects();
 
   if (prevButton) {
     prevButton.addEventListener('click', () => changeProject(-1));
