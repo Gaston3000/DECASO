@@ -375,8 +375,36 @@ if (worksPanel) {
       return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h2v2h6V2h2v2h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h3V2zm13 8H4v10h16V10zM6 12h4v4H6v-4z" /></svg>';
     }
 
+    if (text.includes('marketplace') || text.includes('mercado libre')) {
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18l-1.5 6H4.5L3 5zm2 8h14v6H5v-6zm2 2v2h2v-2H7zm4 0v2h2v-2h-2z" /></svg>';
+    }
+
+    if (text.includes('ecommerce') || text.includes('tienda')) {
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h15l-1.5 8H7.5L6 6zm-2 0h2l2.5 10h9.5M9 20a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm8 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" /></svg>';
+    }
+
+    if (text.includes('conversion')) {
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9h-2a7 7 0 1 1-7-7V3zm0 6a3 3 0 1 0 3 3h2a5 5 0 1 1-5-5v2z" /></svg>';
+    }
+
+    if (text.includes('seo') || text.includes('busqueda')) {
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4a6 6 0 1 0 3.7 10.7l4.6 4.6 1.4-1.4-4.6-4.6A6 6 0 0 0 10 4zm0 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8z" /></svg>';
+    }
+
+    if (text.includes('catalogo') || text.includes('catalog')) {
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4V4zm9 0h7v7h-7V4zM4 13h7v7H4v-7zm9 0h7v7h-7v-7z" /></svg>';
+    }
+
+    if (text.includes('analisis') || text.includes('reporte') || text.includes('metric')) {
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16v-2H4v2zm2-4h2v-6H6v6zm5 0h2V8h-2v8zm5 0h2V5h-2v11z" /></svg>';
+    }
+
     if (text.includes('pick') || text.includes('delivery') || text.includes('envio') || text.includes('retiro')) {
       return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h12v10H3V6zm12 3h3l3 3v4h-6V9zm-9 9h2a2 2 0 0 1-4 0h2zm10 0h2a2 2 0 0 1-4 0h2z" /></svg>';
+    }
+
+    if (text.includes('pedido') || text.includes('orden')) {
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h15l-1.5 8H7.5L6 6zm-2 0h2l2.5 10h9.5M9 20a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm8 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" /></svg>';
     }
 
     if (text.includes('galeria') || text.includes('foto') || text.includes('image') || text.includes('imagen')) {
@@ -399,6 +427,22 @@ if (worksPanel) {
       return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.7 13.7L3 21l4.5-1.2A9 9 0 1 0 12 3zm0 2a7 7 0 0 1 5.9 10.7l-.3.5.8 2.9-2.9-.8-.5.3A7 7 0 1 1 12 5z" /></svg>';
     }
 
+    if (text.includes('postulacion') || text.includes('empleo') || text.includes('trabajo')) {
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0-0.001-8.001A4 4 0 0 0 12 12zm0 2c-4 0-7 2-7 4v2h14v-2c0-2-3-4-7-4z" /></svg>';
+    }
+
+    if (text.includes('patio') || text.includes('terraza') || text.includes('backyard')) {
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 7h-2l2 5h-2l2 6H9l2-6H9l2-5H9l3-7zm-1 18h2v2h-2v-2z" /></svg>';
+    }
+
+    if (text.includes('cobertura') || text.includes('zona') || text.includes('caba') || text.includes('gba')) {
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 4.4 5.2 9.5 6.5 10.8a1 1 0 0 0 1 0C13.8 18.5 19 13.4 19 9a7 7 0 0 0-7-7zm0 9a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" /></svg>';
+    }
+
+    if (text.includes('identidad') || text.includes('marca') || text.includes('branding')) {
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l7 3v6c0 5-3.5 9-7 11-3.5-2-7-6-7-11V5l7-3zm0 4.2L8 7v3.8c0 3.4 2.3 6.3 4 7.6 1.7-1.3 4-4.2 4-7.6V7l-4-0.8z" /></svg>';
+    }
+
     if (text.includes('experiencia') || text.includes('cliente') || text.includes('ux')) {
       return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.6-7 10-7 10z" /></svg>';
     }
@@ -417,7 +461,7 @@ if (worksPanel) {
       return cards.map((card) => {
         const media = card.querySelector('.portfolio-card__media');
         const title = card.querySelector('.portfolio-card__title-link');
-        const description = card.querySelector('.portfolio-card__body p');
+        const description = card.querySelector('.portfolio-card__body p:not(.portfolio-card__service)');
         const link = card.getAttribute('data-href') || '';
 
         return {
@@ -452,23 +496,41 @@ if (worksPanel) {
         .map((item) => item.textContent.trim())
         .filter(Boolean);
 
+      const strategyTitles = Array.from(doc.querySelectorAll('.case-strategy__block h3'))
+        .map((item) => item.textContent.trim())
+        .filter(Boolean);
+
       const resultItems = Array.from(doc.querySelectorAll('.case-results__list li'))
         .map((item) => item.textContent.trim())
         .filter(Boolean);
 
+      const heroMeta = doc.querySelector('.case-hero__meta');
+      const resultSummary = doc.querySelector('.case-results__text');
       const hero = doc.querySelector('.case-hero');
       const heroStyle = hero ? hero.getAttribute('style') : '';
       const heroImage = extractHeroImage(heroStyle);
       const logo = doc.querySelector('.case-hero__logo');
       const logoSrc = logo ? logo.getAttribute('src') : '';
 
+      const normalizedClient = normalizeText(project.client);
+      const isBoutique = normalizedClient.includes('boutique de la limpieza');
+
+      const baseDescription = extractText(descriptionNode) || project.description;
+      const boutiqueDescription = [extractText(heroMeta), extractText(resultSummary)]
+        .filter(Boolean)
+        .join(' - ');
+
       const imageCandidate = heroImage || project.image || logoSrc;
       const resolvedImage = resolveUrl(imageCandidate, baseUrl.href);
 
       return {
         ...project,
-        description: extractText(descriptionNode) || project.description,
-        features: challengeTitles.length > 0 ? challengeTitles : resultItems,
+        description: isBoutique ? boutiqueDescription || baseDescription : baseDescription,
+        features: isBoutique && strategyTitles.length > 0
+          ? strategyTitles
+          : challengeTitles.length > 0
+            ? challengeTitles
+            : resultItems,
         image: resolvedImage || project.image
       };
     } catch (error) {
@@ -486,7 +548,20 @@ if (worksPanel) {
     if (worksLink) worksLink.setAttribute('href', project.link || '#');
 
     if (worksFeatures) {
-      const items = project.features && project.features.length > 0 ? project.features : fallbackFeatures;
+      const normalizedClient = normalizeText(project.client);
+      const isTlp = normalizedClient.includes('the little pig');
+      const tlpFeatures = [
+        'Reservas online',
+        'Pedidos desde la web',
+        'Galeria visual',
+        'Postulaciones laborales',
+        'Patio trasero destacado'
+      ];
+      const items = isTlp
+        ? tlpFeatures
+        : project.features && project.features.length > 0
+          ? project.features
+          : fallbackFeatures;
       worksFeatures.innerHTML = items
         .map((item) => {
           const icon = getFeatureIconSvg(item);
@@ -498,6 +573,8 @@ if (worksPanel) {
     if (worksImage) {
       const normalizedClient = normalizeText(project.client);
       const isLelita = normalizedClient.includes('lelita');
+      const isBoutique = normalizedClient.includes('boutique de la limpieza');
+      const isTlp = normalizedClient.includes('the little pig');
 
       if (isLelita) {
         const thumbs = [
@@ -507,14 +584,50 @@ if (worksPanel) {
         ];
 
         worksImage.classList.add('is-thumbs');
+        worksImage.classList.remove('is-tlp');
+        worksImage.classList.remove('is-single');
         worksImage.style.backgroundImage = '';
         worksImage.style.backgroundSize = '';
         worksImage.style.backgroundPosition = '';
         worksImage.innerHTML = thumbs
           .map((thumb) => `<img class="works__thumb" src="${thumb.src}" alt="${thumb.alt}" loading="lazy" />`)
           .join('');
+      } else if (isBoutique) {
+        const thumbs = [
+          { src: '../fotos/LBDLLEjemplo1.png', alt: 'La Boutique de la Limpieza 1' }
+        ];
+
+        worksImage.classList.add('is-thumbs');
+        worksImage.classList.remove('is-tlp');
+        worksImage.classList.add('is-single');
+        worksImage.style.backgroundImage = '';
+        worksImage.style.backgroundSize = '';
+        worksImage.style.backgroundPosition = '';
+        worksImage.innerHTML = thumbs
+          .map((thumb) => `<img class="works__thumb" src="${thumb.src}" alt="${thumb.alt}" loading="lazy" />`)
+          .join('');
+      } else if (isTlp) {
+        const thumbs = [
+          { src: '../fotos/TLP1.png', alt: 'The Little Pig 1' },
+          { src: '../fotos/TLP2.png', alt: 'The Little Pig 2' }
+        ];
+
+        worksImage.classList.add('is-thumbs');
+        worksImage.classList.add('is-tlp');
+        worksImage.classList.remove('is-single');
+        worksImage.style.backgroundImage = '';
+        worksImage.style.backgroundSize = '';
+        worksImage.style.backgroundPosition = '';
+        worksImage.innerHTML = thumbs
+          .map((thumb) => {
+            const wideClass = thumb.wide ? ' works__thumb--wide' : '';
+            return `<img class="works__thumb${wideClass}" src="${thumb.src}" alt="${thumb.alt}" loading="lazy" />`;
+          })
+          .join('');
       } else {
         worksImage.classList.remove('is-thumbs');
+        worksImage.classList.remove('is-single');
+        worksImage.classList.remove('is-tlp');
         worksImage.innerHTML = '';
 
         if (project.image) {
@@ -555,6 +668,13 @@ if (worksPanel) {
 
     const enriched = await Promise.all(portfolioProjects.map(enrichFromClientPage));
     projects = enriched;
+    const boutiqueIndex = projects.findIndex((item) =>
+      normalizeText(item.client).includes('boutique de la limpieza')
+    );
+    if (boutiqueIndex > 0) {
+      const boutiqueProject = projects.splice(boutiqueIndex, 1)[0];
+      projects.unshift(boutiqueProject);
+    }
     activeIndex = 0;
     applyProject(activeIndex);
   };
