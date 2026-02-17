@@ -375,6 +375,10 @@ if (worksPanel) {
       return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h2v2h6V2h2v2h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h3V2zm13 8H4v10h16V10zM6 12h4v4H6v-4z" /></svg>';
     }
 
+    if (text.includes('animacion') || text.includes('animation') || text.includes('efecto')) {
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.5 7.5L23 13l-7.5 3.5L12 24l-3.5-7.5L1 13l7.5-3.5L12 2zm0 5.2L10.3 11l-3.8 1.7 3.8 1.6L12 18.8l1.7-4.5 3.8-1.6-3.8-1.7L12 7.2z" /></svg>';
+    }
+
     if (text.includes('marketplace') || text.includes('mercado libre')) {
       return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18l-1.5 6H4.5L3 5zm2 8h14v6H5v-6zm2 2v2h2v-2H7zm4 0v2h2v-2h-2z" /></svg>';
     }
@@ -413,6 +417,10 @@ if (worksPanel) {
 
     if (text.includes('mobile') || text.includes('responsive') || text.includes('celular')) {
       return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm5 17a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" /></svg>';
+    }
+
+    if (text.includes('fisica') || text.includes('impresa') || text.includes('print')) {
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 3v4H6V3h12zm1 5a3 3 0 0 1 3 3v4a3 3 0 0 1-3 3v3H5v-3a3 3 0 0 1-3-3v-4a3 3 0 0 1 3-3h14zM6 15v4h12v-4H6zm12-3a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" /></svg>';
     }
 
     if (text.includes('carta') || text.includes('menu')) {
@@ -550,6 +558,8 @@ if (worksPanel) {
     if (worksFeatures) {
       const normalizedClient = normalizeText(project.client);
       const isTlp = normalizedClient.includes('the little pig');
+      const isLelita = normalizedClient.includes('lelita');
+      const isPri = normalizedClient.includes('puertas rapidas') || normalizedClient.includes('pri');
       const tlpFeatures = [
         'Reservas online',
         'Pedidos desde la web',
@@ -557,11 +567,30 @@ if (worksPanel) {
         'Postulaciones laborales',
         'Patio trasero destacado'
       ];
+      const lelitaFeatures = [
+        'Carta digital visual',
+        'Multilenguaje',
+        'Contacto directo',
+        'Carta fisica impresa',
+        'Animaciones',
+        'Reservas online'
+      ];
+      const priFeatures = [
+        'Identidad corporativa',
+        'Catalogo digital de productos',
+        'SEO B2B especializado',
+        'Experiencia de usuario industrial',
+        'Integracion con WhatsApp'
+      ];
       const items = isTlp
         ? tlpFeatures
-        : project.features && project.features.length > 0
-          ? project.features
-          : fallbackFeatures;
+        : isLelita
+          ? lelitaFeatures
+          : isPri
+            ? priFeatures
+            : project.features && project.features.length > 0
+              ? project.features
+              : fallbackFeatures;
       worksFeatures.innerHTML = items
         .map((item) => {
           const icon = getFeatureIconSvg(item);
@@ -575,6 +604,7 @@ if (worksPanel) {
       const isLelita = normalizedClient.includes('lelita');
       const isBoutique = normalizedClient.includes('boutique de la limpieza');
       const isTlp = normalizedClient.includes('the little pig');
+      const isPri = normalizedClient.includes('puertas rapidas') || normalizedClient.includes('pri');
 
       if (isLelita) {
         const thumbs = [
@@ -623,6 +653,22 @@ if (worksPanel) {
             const wideClass = thumb.wide ? ' works__thumb--wide' : '';
             return `<img class="works__thumb${wideClass}" src="${thumb.src}" alt="${thumb.alt}" loading="lazy" />`;
           })
+          .join('');
+      } else if (isPri) {
+        const thumbs = [
+          { src: '../fotos/celuPRI1.png', alt: 'Puertas Rápidas Industriales Mobile 1' },
+          { src: '../fotos/CeluPRI2.png', alt: 'Puertas Rápidas Industriales Mobile 2' }
+        ];
+
+        worksImage.classList.add('is-thumbs');
+        worksImage.classList.add('is-pri');
+        worksImage.classList.remove('is-single');
+        worksImage.classList.remove('is-tlp');
+        worksImage.style.backgroundImage = '';
+        worksImage.style.backgroundSize = '';
+        worksImage.style.backgroundPosition = '';
+        worksImage.innerHTML = thumbs
+          .map((thumb) => `<img class="works__thumb" src="${thumb.src}" alt="${thumb.alt}" loading="lazy" />`)
           .join('');
       } else {
         worksImage.classList.remove('is-thumbs');
@@ -877,3 +923,34 @@ if (faqSection) {
 window.addEventListener('resize', () => {
   animateUnderline();
 });
+
+// Show/hide header on scroll
+(function() {
+  if (!header) return;
+  
+  let lastScroll = 0;
+  let scrollTimeout;
+
+  const handleScroll = () => {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (currentScroll <= 50) {
+      header.classList.remove('is-hidden');
+    } else if (currentScroll > lastScroll && currentScroll > 100) {
+      // Scrolling down & past threshold
+      header.classList.add('is-hidden');
+    } else if (currentScroll < lastScroll) {
+      // Scrolling up
+      header.classList.remove('is-hidden');
+    }
+    
+    lastScroll = currentScroll <= 0 ? 0 : currentScroll;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (scrollTimeout) {
+      window.cancelAnimationFrame(scrollTimeout);
+    }
+    scrollTimeout = window.requestAnimationFrame(handleScroll);
+  }, { passive: true });
+})();

@@ -16,8 +16,12 @@
       </a>
 
       <nav class="nav" aria-label="Principal">
-        <button class="mobile-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu">
-          Menu
+        <button class="mobile-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menú">
+          <span class="hamburger">
+            <span class="hamburger__line"></span>
+            <span class="hamburger__line"></span>
+            <span class="hamburger__line"></span>
+          </span>
         </button>
         <ul class="nav__list">
           <li>
@@ -124,8 +128,8 @@
     </div>
   </header>
 
-  <main class="case">
-    <section class="case-hero" style="--case-hero-image: url('../../fotos/puertas-rapidas-industriales.jpg');">
+  <main class="case case--pri">
+    <section class="case-hero">
       <div class="case-hero__overlay" aria-hidden="true"></div>
       <div class="case-hero__marquee" aria-hidden="true">
         <div class="case-hero__track">
@@ -145,37 +149,68 @@
       </div>
       <div class="case-hero__content">
         <p class="case-hero__eyebrow">Cliente por cliente</p>
-        <img class="case-hero__logo" src="../../fotos/Puertas rapidas industriales.jpeg" alt="Puertas rapidas industriales" />
-        <h1 class="case-hero__title">Puertas rapidas industriales</h1>
-        <p class="case-hero__meta">Industria · Branding + Web · 2026</p>
+        <img class="case-hero__logo" src="../../fotos/Puertas rapidas industriales.png" alt="Puertas Rápidas Industriales" />
+        <div class="case-hero__title-row">
+          <h1 class="case-hero__title">Puertas Rápidas Industriales</h1>
+        </div>
       </div>
     </section>
 
     <section class="case-section case-challenges">
       <div class="case-section__header reveal-on-scroll">
-        <h2>Desafios</h2>
-        <p>Objetivos claros que guiaron el proyecto de principio a fin.</p>
+        <p class="case-hero__meta case-hero__meta--floating">Soluciones industriales — Automatización de accesos</p>
+        <div class="case-hero__cta">
+          <a class="cta__button" href="https://puertasrapidasindustrailes.com.ar/" target="_blank" rel="noopener">
+            <span class="cta__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h12v12h-2V8.4L6.4 19 5 17.6 15.6 7H7V5z" /></svg>
+            </span>
+            Ver sitio web
+          </a>
+        </div>
+        <h2>Desafíos</h2>
+        <p>Construir una presencia digital profesional que transmita confianza y especialización en el sector industrial.</p>
       </div>
       <div class="case-challenges__list">
         <article class="case-challenge reveal-on-scroll">
           <span class="case-challenge__index">01</span>
           <div>
-            <h3>Catalogo tecnico</h3>
-            <p>Ordenar productos y especificaciones para decisiones rapidas.</p>
+            <h3>Transmitir confianza en un rubro industrial</h3>
+            <p>Posicionar la empresa como especialista confiable en soluciones de automatización industrial para empresas y fábricas.</p>
           </div>
         </article>
         <article class="case-challenge reveal-on-scroll">
           <span class="case-challenge__index">02</span>
           <div>
-            <h3>Presencia B2B</h3>
-            <p>Transmitir experiencia y solidez en el primer impacto.</p>
+            <h3>Comunicar productos técnicos con claridad</h3>
+            <p>Presentar distintos tipos de puertas industriales y sus aplicaciones de forma comprensible para decisores empresariales.</p>
           </div>
         </article>
         <article class="case-challenge reveal-on-scroll">
           <span class="case-challenge__index">03</span>
           <div>
-            <h3>Consultas calificadas</h3>
-            <p>Convertir visitas en oportunidades con formularios claros.</p>
+            <h3>Diferenciar productos personalizados</h3>
+            <p>Explicar las características y ventajas de cada tipo de puerta según las necesidades específicas de cada industria.</p>
+          </div>
+        </article>
+        <article class="case-challenge reveal-on-scroll">
+          <span class="case-challenge__index">04</span>
+          <div>
+            <h3>Mostrar servicios integrales</h3>
+            <p>Comunicar que no solo comercializan productos, sino que ofrecen instalación, mantenimiento preventivo y correctivo.</p>
+          </div>
+        </article>
+        <article class="case-challenge reveal-on-scroll">
+          <span class="case-challenge__index">05</span>
+          <div>
+            <h3>Facilitar contacto directo B2B</h3>
+            <p>Generar un canal de comunicación rápido y profesional para cotizaciones y consultas comerciales.</p>
+          </div>
+        </article>
+        <article class="case-challenge reveal-on-scroll">
+          <span class="case-challenge__index">06</span>
+          <div>
+            <h3>Posicionarse como especialistas</h3>
+            <p>Reflejar la experiencia técnica y el respaldo de ingeniería que caracteriza a la empresa.</p>
           </div>
         </article>
       </div>
@@ -184,20 +219,40 @@
     <section class="case-section case-strategy">
       <div class="case-section__header reveal-on-scroll">
         <h2>Nuestra estrategia</h2>
-        <p>Plan de accion estructurado para resolver cada desafio con precision.</p>
+        <p>Desarrollamos una solución digital integral con enfoque B2B e industrial.</p>
       </div>
       <div class="case-strategy__grid">
         <article class="case-strategy__block reveal-on-scroll">
-          <h3>Arquitectura tecnica</h3>
-          <p>Fichas claras con beneficios y especificaciones clave.</p>
+          <h3>Sitio web B2B profesional</h3>
+          <p>Desarrollo de una plataforma digital orientada a empresas, con diseño profesional y navegación clara para decisores industriales.</p>
         </article>
         <article class="case-strategy__block reveal-on-scroll">
-          <h3>Visual industrial</h3>
-          <p>Identidad visual solida alineada al sector.</p>
+          <h3>Organización de productos</h3>
+          <p>Estructuración clara de los distintos tipos de puertas industriales: rápidas, seccionales, enrollables, y automáticas, con sus aplicaciones específicas.</p>
         </article>
         <article class="case-strategy__block reveal-on-scroll">
-          <h3>CTA comerciales</h3>
-          <p>Flujos simples para pedir cotizaciones.</p>
+          <h3>Servicios destacados</h3>
+          <p>Presentación visible de servicios complementarios: instalación profesional, mantenimiento preventivo programado y mantenimiento correctivo de urgencia.</p>
+        </article>
+        <article class="case-strategy__block reveal-on-scroll">
+          <h3>Identidad como especialistas</h3>
+          <p>Construcción de sección "Nosotros" que refuerza su posicionamiento: especialistas en puertas rápidas automatizadas para industrias, logística y comercio.</p>
+        </article>
+        <article class="case-strategy__block reveal-on-scroll">
+          <h3>Enfoque en seguridad y eficiencia</h3>
+          <p>Comunicación orientada a optimización de flujos operativos, seguridad industrial y reducción de costos mediante soluciones personalizadas.</p>
+        </article>
+        <article class="case-strategy__block reveal-on-scroll">
+          <h3>Contacto directo multicanal</h3>
+          <p>Integración de WhatsApp para consultas inmediatas y formulario de email para comunicación corporativa formal.</p>
+        </article>
+        <article class="case-strategy__block reveal-on-scroll">
+          <h3>Diseño orientado a conversión</h3>
+          <p>Experiencia clara y profesional con llamados a la acción estratégicos para captar leads comerciales calificados.</p>
+        </article>
+        <article class="case-strategy__block reveal-on-scroll">
+          <h3>Imagen técnica y confiable</h3>
+          <p>Diseño visual alineado con ingeniería, precisión y calidad industrial, reforzando credibilidad ante clientes B2B.</p>
         </article>
       </div>
     </section>
@@ -205,21 +260,38 @@
     <section class="case-section case-results">
       <div class="case-section__header reveal-on-scroll">
         <h2>Resultados</h2>
-        <p>Impacto real en presencia digital y conversiones.</p>
+        <p>Una presencia digital profesional que posiciona a P.R.I. como referente en automatización industrial.</p>
       </div>
       <div class="case-results__layout">
         <div class="case-results__media">
-          <div class="case-results__image" style="--result-image: url('../../fotos/puertas-rapidas-industriales-resultado-1.jpg');"></div>
-          <div class="case-results__image" style="--result-image: url('../../fotos/puertas-rapidas-industriales-resultado-2.jpg');"></div>
+          <div class="case-results__image">
+            <img src="../../fotos/compuPRI1.png" alt="Vista desktop del sitio P.R.I. 1" loading="lazy" />
+          </div>
+          <div class="case-results__image">
+            <img src="../../fotos/CompuPRI2.png" alt="Vista desktop del sitio P.R.I. 2" loading="lazy" />
+          </div>
+          <div class="case-results__image">
+            <img src="../../fotos/TabletPRI.png" alt="Vista tablet del sitio P.R.I." loading="lazy" />
+          </div>
+          <div class="case-results__image case-results__image--mobile">
+            <img src="../../fotos/celuPRI1.png" alt="Vista mobile del sitio P.R.I. 1" loading="lazy" />
+          </div>
+          <div class="case-results__image case-results__image--mobile">
+            <img src="../../fotos/CeluPRI2.png" alt="Vista mobile del sitio P.R.I. 2" loading="lazy" />
+          </div>
         </div>
         <div class="case-results__content">
           <p class="case-results__text">
-            La nueva web ordeno el catalogo y genero mas consultas tecnicas calificadas.
+            Una plataforma digital que transmite profesionalismo, facilita la toma de decisiones y fortalece la comunicación con clientes industriales.
           </p>
           <ul class="case-results__list">
-            <li>Catalogo claro y facil de navegar.</li>
-            <li>Consultas comerciales mas precisas.</li>
-            <li>Mejor posicionamiento percibido.</li>
+            <li>Presencia digital sólida alineada con estándares B2B del sector industrial.</li>
+            <li>Comunicación clara de productos técnicos y servicios especializados.</li>
+            <li>Mayor confianza percibida por potenciales clientes empresariales.</li>
+            <li>Canal de contacto directo activo para consultas y cotizaciones comerciales.</li>
+            <li>Base digital profesional para generación de leads calificados.</li>
+            <li>Imagen corporativa alineada con ingeniería, eficiencia y seguridad industrial.</li>
+            <li>Posicionamiento como especialistas en soluciones de automatización de accesos.</li>
           </ul>
         </div>
       </div>
