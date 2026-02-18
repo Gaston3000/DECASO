@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DeCaso - Diseño</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>" />
   <link rel="stylesheet" href="../assets/css/styles.css" />
 </head>
 <body>
@@ -117,6 +118,17 @@
         </ul>
       </nav>
 
+      <button class="lang-toggle" type="button" data-lang="es" aria-label="Cambiar idioma">
+        <span class="lang-toggle__flag">
+          <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="20" height="4.67" fill="#74ACDF"/>
+            <rect y="4.67" width="20" height="4.67" fill="#FFFFFF"/>
+            <rect y="9.33" width="20" height="4.67" fill="#74ACDF"/>
+          </svg>
+        </span>
+        <span class="lang-toggle__label">ESP</span>
+      </button>
+
       <div class="cta">
         <a class="cta__button" href="../contactanos/">
           <span class="cta__icon" aria-hidden="true">
@@ -135,32 +147,67 @@
   </main>
 
   <footer class="site-footer" aria-label="Footer">
-    <div class="site-footer__grid">
-      <div class="site-footer__help">
-        <p class="site-footer__eyebrow">¿Necesitas ayuda?</p>
-        <p class="site-footer__title">Llamanos</p>
-        <div class="site-footer__contact">
-          <span class="site-footer__label">USA</span>
-          <span class="site-footer__value">+1 (720) 653-5266</span>
+    <div class="site-footer__container">
+      <div class="site-footer__top">
+        <div class="site-footer__brand">
+          <img class="site-footer__logo" src="../fotos/logo decaso.png" alt="Logo DeCaso" />
+          <p class="site-footer__claim">Diseñamos experiencias digitales que transforman negocios.</p>
+          <a href="../portafolio/" class="site-footer__brand-link">Ver Portafolio →</a>
         </div>
+
+        <nav class="site-footer__nav" aria-label="Footer navigation">
+          <div class="site-footer__nav-group">
+            <h3 class="site-footer__nav-title">Servicios</h3>
+            <ul class="site-footer__nav-list">
+              <li><a href="../marketing/" class="site-footer__nav-link">Marketing</a></li>
+              <li><a href="../diseno/" class="site-footer__nav-link">Diseño</a></li>
+              <li><a href="../desarrollo/" class="site-footer__nav-link">Desarrollo</a></li>
+            </ul>
+          </div>
+        </nav>
+
         <div class="site-footer__contact">
-          <span class="site-footer__label">ARG</span>
-          <span class="site-footer__value">+54 9 11 4048-6698</span>
+          <h3 class="site-footer__contact-title">Contactenos</h3>
+          <a href="../contactanos/" class="site-footer__cta-button">
+            <span class="site-footer__cta-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 12a4 4 0 1 0-0.001-8.001A4 4 0 0 0 12 12zm0 2c-4 0-7 2-7 4v2h14v-2c0-2-3-4-7-4z"/>
+              </svg>
+            </span>
+            <span>Contactanos</span>
+          </a>
         </div>
       </div>
 
-      <div class="site-footer__brand">
-        <img class="site-footer__logo" src="../fotos/logo decaso.png" alt="Logo DeCaso" />
-        <p class="site-footer__legal">Todos los derechos reservados.</p>
-      </div>
+      <div class="site-footer__divider" aria-hidden="true"></div>
 
-      <div class="site-footer__social">
-        <a class="site-footer__social-link" href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2c-.3-1-1.1-1.8-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5c-1 .3-1.8 1.1-2.1 2.1C2 9 2 12 2 12s0 3 .4 4.8c.3 1 1.1 1.8 2.1 2.1 1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5c1-.3 1.8-1.1 2.1-2.1.4-1.8.4-4.8.4-4.8s0-3-.4-4.8zM10 15.2V8.8l5.4 3.2-5.4 3.2z" /></svg>
-        </a>
-        <a class="site-footer__social-link" href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.3a4.7 4.7 0 1 0 0 9.4 4.7 4.7 0 0 0 0-9.4zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zM18 6.5a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2z" /><path d="M7.2 3.5h9.6A3.7 3.7 0 0 1 20.5 7.2v9.6a3.7 3.7 0 0 1-3.7 3.7H7.2a3.7 3.7 0 0 1-3.7-3.7V7.2a3.7 3.7 0 0 1 3.7-3.7zm0 1.7A2 2 0 0 0 5.2 7.2v9.6a2 2 0 0 0 2 2h9.6a2 2 0 0 0 2-2V7.2a2 2 0 0 0-2-2H7.2z" /></svg>
-        </a>
+      <div class="site-footer__bottom">
+        <div class="site-footer__social">
+          <a class="site-footer__social-link" href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2c-.3-1-1.1-1.8-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5c-1 .3-1.8 1.1-2.1 2.1C2 9 2 12 2 12s0 3 .4 4.8c.3 1 1.1 1.8 2.1 2.1 1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5c1-.3 1.8-1.1 2.1-2.1.4-1.8.4-4.8.4-4.8s0-3-.4-4.8zM10 15.2V8.8l5.4 3.2-5.4 3.2z" /></svg>
+          </a>
+          <a class="site-footer__social-link" href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.3a4.7 4.7 0 1 0 0 9.4 4.7 4.7 0 0 0 0-9.4zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zM18 6.5a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2z" /><path d="M7.2 3.5h9.6A3.7 3.7 0 0 1 20.5 7.2v9.6a3.7 3.7 0 0 1-3.7 3.7H7.2a3.7 3.7 0 0 1-3.7-3.7V7.2a3.7 3.7 0 0 1 3.7-3.7zm0 1.7A2 2 0 0 0 5.2 7.2v9.6a2 2 0 0 0 2 2h9.6a2 2 0 0 0 2-2V7.2a2 2 0 0 0-2-2H7.2z" /></svg>
+          </a>
+          <a class="site-footer__social-link" href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91l.04-1.68z"/></svg>
+          </a>
+          <a class="site-footer__social-link" href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.03 23L9 13H5V9h4V6.5C9 2.8 11.3 1 14.6 1c1.5 0 3.1.3 3.1.3v3.4h-1.7c-1.7 0-2.2 1.1-2.2 2.2V9h3.8l-.6 4h-3.2v10h-4z"/></svg>
+          </a>
+        </div>
+
+        <div class="site-footer__legal-group">
+          <p class="site-footer__legal">
+            <span>&copy; 2026 DeCaso.</span>
+            <span>Todos los derechos reservados.</span>
+          </p>
+          <p class="site-footer__legal-links">
+            <a href="#" class="site-footer__legal-link">Política de Privacidad</a>
+            <span class="site-footer__legal-sep" aria-hidden="true">·</span>
+            <a href="#" class="site-footer__legal-link">Términos y Condiciones</a>
+          </p>
+        </div>
       </div>
     </div>
   </footer>

@@ -1,3 +1,14 @@
+// Unregister any service workers to prevent navigation preload errors
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(function(registrations) {
+    for (let registration of registrations) {
+      registration.unregister();
+    }
+  }).catch(function(err) {
+    console.log('Service Worker unregistration failed: ', err);
+  });
+}
+
 const toggle = document.querySelector('.mobile-toggle');
 const mobileMenu = document.getElementById('mobile-menu');
 const navLinks = document.querySelectorAll('.nav__link');
@@ -616,6 +627,7 @@ if (worksPanel) {
         worksImage.classList.add('is-thumbs');
         worksImage.classList.remove('is-tlp');
         worksImage.classList.remove('is-single');
+        worksImage.classList.remove('is-pri');
         worksImage.style.backgroundImage = '';
         worksImage.style.backgroundSize = '';
         worksImage.style.backgroundPosition = '';
@@ -630,6 +642,7 @@ if (worksPanel) {
         worksImage.classList.add('is-thumbs');
         worksImage.classList.remove('is-tlp');
         worksImage.classList.add('is-single');
+        worksImage.classList.remove('is-pri');
         worksImage.style.backgroundImage = '';
         worksImage.style.backgroundSize = '';
         worksImage.style.backgroundPosition = '';
@@ -954,3 +967,572 @@ window.addEventListener('resize', () => {
     scrollTimeout = window.requestAnimationFrame(handleScroll);
   }, { passive: true });
 })();
+
+// Language toggle functionality
+const translations = {
+  es: {
+    nav: {
+      inicio: 'Inicio',
+      marketing: 'Marketing',
+      diseno: 'Diseño',
+      desarrollo: 'Desarrollo',
+      portafolio: 'Portafolio',
+      contactanos: 'Contactanos'
+    },
+    hero: {
+      eyebrow: 'Estrategia digital de alto impacto',
+      title: 'Un sitio web es solo el comienzo.',
+      copy: 'Combinamos diseño, SEO y her ramientas de marketing para ayudar a que tu negocio crezca en línea.',
+      signal: 'Resultados que cruzan fronteras',
+      button: 'Contactanos'
+    },
+    services: {
+      title: 'Servicios',
+      marketing: {
+        name: 'Marketing',
+        items: ['Estrategia digital', 'Publicidad online', 'Growth marketing', 'Analisis de metricas', 'Funnels de conversion', 'Automatizacion comercial']
+      },
+      sistemas: {
+        name: 'Sistemas',
+        items: ['Automatizaciones', 'Integraciones', 'Soluciones internas', 'Dashboards operativos', 'Optimización de procesos']
+      },
+      desarrollo: {
+        name: 'Desarrollo',
+        items: ['Desarrollo web', 'Desarrollo de software', 'Desarrollo de MVP', 'SEO', 'APIs y servicios', 'QA y optimizacion']
+      },
+      diseno: {
+        name: 'Diseno',
+        items: ['Diseno UI/UX', 'Diseno web', 'Diseno de aplicaciones moviles', 'Branding', 'Sistemas de diseno', 'Direccion visual']
+      }
+    },
+    global: {
+      title: 'Presencia Global',
+      meta: 'CLIENTES ACTIVOS EN ESTA REGION',
+      newYork: 'Nueva York',
+      buenosAires: 'Buenos Aires',
+      miami: 'Miami'
+    },
+    works: {
+      title: 'Nuestros trabajos',
+      button: 'Ver proyecto'
+    },
+    testimonials: {
+      title: 'Impulsamos el exito de PyMEs, transformando sus objetivos en realidades.',
+      profileText: 'Aqui iria una foto de un cliente satisfecho que represente confianza y profesionalismo.'
+    },
+    faq: {
+      title: 'Preguntas Frecuentes',
+      questions: [
+        '¿Siempre trabajan bajo contrato?',
+        '¿Cuanto demoran en terminar un proyecto?',
+        '¿Que incluyen los planes de servicio?',
+        '¿Ofrecen mantenimiento y soporte?',
+        '¿Trabajan con PyMEs y negocios pequenos?'
+      ],
+      answers: [
+        'Si. Trabajamos con contrato y un alcance claro para proteger tiempos, entregables y objetivos.',
+        'Depende del alcance, pero en general un sitio profesional se entrega entre 3 y 6 semanas.',
+        'Diseno, desarrollo, SEO base, analitica y ajustes iniciales segun las metas del negocio.',
+        'Si. Podemos encargarnos de mejoras continuas, seguridad, backups y evolucion del sitio.',
+        'Si. Nos especializamos en PyMEs y adaptamos el proyecto a su presupuesto y objetivos.'
+      ]
+    },
+    ctaPanel: {
+      title: '¿Crees en lo que hacemos?',
+      subtitle: 'Hablemos',
+      button: 'Contactanos'
+    },
+    pages: {
+      marketing: {
+        title: 'Marketing',
+        subtitle: 'Estrategia, performance y crecimiento con un enfoque sci-fi.'
+      },
+      diseno: {
+        title: 'Diseño',
+        subtitle: 'Identidad, UI/UX y dirección visual con estética premium.',
+        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel mauris sed justo tempus posuere. Nulla facilisi. Integer ut lacus ut sapien consequat interdum.'
+      },
+      desarrollo: {
+        title: 'Desarrollo',
+        subtitle: 'Webs, apps y experiencias interactivas de alto impacto.'
+      }
+    },
+    portfolio: {
+      eyebrow: 'TODOS NUESTROS TRABAJOS',
+      meta: '+20 Proyectos Terminados',
+      pitch: '20 marcas ya renovaron su identidad con nosotros. ¿Listo para que tu proyecto destaque?',
+      filterTitle: 'Filtrar proyectos',
+      industries: 'Industrias',
+      services: 'Servicios',
+      cities: 'Ciudades',
+      tags: {
+        gastronomia: 'Gastronomia',
+        tatto: 'Tatto',
+        industria: 'Industria',
+        higieneYLimpieza: 'Higiene y Limpieza'
+      }
+    },
+    contact: {
+      title: 'Hablemos!',
+      subtitle: 'Estamos aqui para ayudarte',
+      checklist: [
+        'Le responderemos en 24 horas.',
+        'Firmaremos un acuerdo de confidencialidad si lo solicita.',
+        'Acceso a especialistas de producto dedicados.'
+      ],
+      form: {
+        nombre: 'Nombre',
+        nombrePlaceholder: 'Tu nombre',
+        apellido: 'Apellido',
+        apellidoPlaceholder: 'Tu apellido',
+        industria: 'Industria',
+        industriaPlaceholder: 'Ej. Tecnologia',
+        email: 'Mail compania',
+        emailPlaceholder: 'contacto@empresa.com',
+        mensaje: 'Cuentanos tu idea sobre tu proyecto',
+        mensajePlaceholder: 'Resumen breve del proyecto',
+        button: 'Enviar consulta'
+      }
+    },
+    footer: {
+      help: '¿Necesitas ayuda?',
+      call: 'Llamanos',
+      legal: 'Todos los derechos reservados.'
+    }
+  },
+  en: {
+    nav: {
+      inicio: 'Home',
+      marketing: 'Marketing',
+      diseno: 'Design',
+      desarrollo: 'Development',
+      portafolio: 'Portfolio',
+      contactanos: 'Contact Us'
+    },
+    hero: {
+      eyebrow: 'High-impact digital strategy',
+      title: 'A website is just the beginning.',
+      copy: 'We combine design, SEO, and marketing tools to help your business grow online.',
+      signal: 'Results that cross borders',
+      button: 'Contact Us'
+    },
+    services: {
+      title: 'Services',
+      marketing: {
+        name: 'Marketing',
+        items: ['Digital strategy', 'Online advertising', 'Growth marketing', 'Metrics analysis', 'Conversion funnels', 'Sales automation']
+      },
+      sistemas: {
+        name: 'Systems',
+        items: ['Automations', 'Integrations', 'Internal solutions', 'Operational dashboards', 'Process optimization']
+      },
+      desarrollo: {
+        name: 'Development',
+        items: ['Web development', 'Software development', 'MVP development', 'SEO', 'APIs and services', 'QA and optimization']
+      },
+      diseno: {
+        name: 'Design',
+        items: ['UI/UX design', 'Web design', 'Mobile app design', 'Branding', 'Design systems', 'Visual direction']
+      }
+    },
+    global: {
+      title: 'Global Presence',
+      meta: 'ACTIVE CLIENTS IN THIS REGION',
+      newYork: 'New York',
+      buenosAires: 'Buenos Aires',
+      miami: 'Miami'
+    },
+    works: {
+      title: 'Our Work',
+      button: 'View project'
+    },
+    testimonials: {
+      title: 'We drive SME success, turning their goals into realities.',
+      profileText: 'Here would be a photo of a satisfied client representing trust and professionalism.'
+    },
+    faq: {
+      title: 'Frequently Asked Questions',
+      questions: [
+        'Do you always work under contract?',
+        'How long does it take to complete a project?',
+        'What do service plans include?',
+        'Do you offer maintenance and support?',
+        'Do you work with SMEs and small businesses?'
+      ],
+      answers: [
+        'Yes. We work with a contract and clear scope to protect timelines, deliverables, and objectives.',
+        'It depends on the scope, but generally a professional site is delivered within 3 to 6 weeks.',
+        'Design, development, base SEO, analytics, and initial adjustments according to business goals.',
+        'Yes. We can handle continuous improvements, security, backups, and site evolution.',
+        'Yes. We specialize in SMEs and adapt the project to your budget and objectives.'
+      ]
+    },
+    ctaPanel: {
+      title: 'Believe in what we do?',
+      subtitle: 'Let\'s talk',
+      button: 'Contact Us'
+    },
+    pages: {
+      marketing: {
+        title: 'Marketing',
+        subtitle: 'Strategy, performance, and growth with a sci-fi approach.'
+      },
+      diseno: {
+        title: 'Design',
+        subtitle: 'Identity, UI/UX, and visual direction with premium aesthetics.',
+        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel mauris sed justo tempus posuere. Nulla facilisi. Integer ut lacus ut sapien consequat interdum.'
+      },
+      desarrollo: {
+        title: 'Development',
+        subtitle: 'Websites, apps, and high-impact interactive experiences.'
+      }
+    },
+    portfolio: {
+      eyebrow: 'ALL OUR WORK',
+      meta: '+20 Completed Projects',
+      pitch: '20 brands have already renewed their identity with us. Ready for your project to stand out?',
+      filterTitle: 'Filter projects',
+      industries: 'Industries',
+      services: 'Services',
+      cities: 'Cities',
+      tags: {
+        gastronomia: 'Gastronomy',
+        tatto: 'Tattoo',
+        industria: 'Industry',
+        higieneYLimpieza: 'Hygiene and Cleaning'
+      }
+    },
+    contact: {
+      title: 'Let\'s talk!',
+      subtitle: 'We\'re here to help you',
+      checklist: [
+        'We will respond within 24 hours.',
+        'We will sign a confidentiality agreement if requested.',
+        'Access to dedicated product specialists.'
+      ],
+      form: {
+        nombre: 'First Name',
+        nombrePlaceholder: 'Your first name',
+        apellido: 'Last Name',
+        apellidoPlaceholder: 'Your last name',
+        industria: 'Industry',
+        industriaPlaceholder: 'E.g. Technology',
+        email: 'Company Email',
+        emailPlaceholder: 'contact@company.com',
+        mensaje: 'Tell us about your project idea',
+        mensajePlaceholder: 'Brief project summary',
+        button: 'Submit inquiry'
+      }
+    },
+    footer: {
+      help: 'Need help?',
+      call: 'Call us',
+      legal: 'All rights reserved.'
+    }
+  }
+};
+
+const langToggle = document.querySelector('.lang-toggle');
+
+if (langToggle) {
+  const updateLanguage = (lang) => {
+    // Update button state
+    langToggle.dataset.lang = lang;
+    const flag = langToggle.querySelector('.lang-toggle__flag');
+    const label = langToggle.querySelector('.lang-toggle__label');
+    
+    if (lang === 'es') {
+      if (flag) {
+        flag.innerHTML = '<svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="4.67" fill="#74ACDF"/><rect y="4.67" width="20" height="4.67" fill="#FFFFFF"/><rect y="9.33" width="20" height="4.67" fill="#74ACDF"/></svg>';
+      }
+      if (label) label.textContent = 'ESP';
+      langToggle.setAttribute('aria-label', 'Cambiar a inglés');
+    } else {
+      if (flag) {
+        flag.innerHTML = '<svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" fill="#B22234"/><rect width="20" height="1.08" fill="#FFFFFF"/><rect y="2.15" width="20" height="1.08" fill="#FFFFFF"/><rect y="4.31" width="20" height="1.08" fill="#FFFFFF"/><rect y="6.46" width="20" height="1.08" fill="#FFFFFF"/><rect y="8.62" width="20" height="1.08" fill="#FFFFFF"/><rect y="10.77" width="20" height="1.08" fill="#FFFFFF"/><rect y="12.92" width="20" height="1.08" fill="#FFFFFF"/><rect width="8" height="7.5" fill="#3C3B6E"/></svg>';
+      }
+      if (label) label.textContent = 'ENG';
+      langToggle.setAttribute('aria-label', 'Switch to Spanish');
+    }
+    
+    // Update page content
+    const t = translations[lang];
+    if (!t) return;
+    
+    // Update navigation links (both desktop and mobile)
+    document.querySelectorAll('.nav__link').forEach(link => {
+      const href = link.getAttribute('href') || '';
+      const icon = link.querySelector('.nav__icon');
+      
+      let newText = '';
+      if (href.includes('/inicio/')) {
+        newText = t.nav.inicio;
+      } else if (href.includes('/marketing/')) {
+        newText = t.nav.marketing;
+      } else if (href.includes('/diseno/')) {
+        newText = t.nav.diseno;
+      } else if (href.includes('/desarrollo/')) {
+        newText = t.nav.desarrollo;
+      } else if (href.includes('/portafolio/')) {
+        newText = t.nav.portafolio;
+      } else if (href.includes('/contactanos/')) {
+        newText = t.nav.contactanos;
+      }
+      
+      if (newText && icon) {
+        Array.from(link.childNodes).forEach(node => {
+          if (node.nodeType === 3) node.remove();
+        });
+        link.appendChild(document.createTextNode(newText));
+      }
+    });
+    
+    // Update CTA button
+    if (ctaButton) {
+      const ctaIcon = ctaButton.querySelector('.cta__icon');
+      if (ctaIcon) {
+        Array.from(ctaButton.childNodes).forEach(node => {
+          if (node.nodeType === 3) node.remove();
+        });
+        ctaButton.appendChild(document.createTextNode(t.nav.contactanos));
+      }
+    }
+    
+    // HERO SECTION (inicio page)
+    const heroEyebrow = document.querySelector('.hero__eyebrow');
+    const heroTitle = document.querySelector('.hero__title');
+    const heroCopy = document.querySelector('.hero__copy');
+    const heroSignal = document.querySelector('.hero__signal span:last-child');
+    const heroButton = document.querySelector('.hero__button');
+    
+    if (heroEyebrow) heroEyebrow.textContent = t.hero.eyebrow;
+    if (heroTitle) heroTitle.textContent = t.hero.title;
+    if (heroCopy) heroCopy.textContent = t.hero.copy;
+    if (heroSignal) heroSignal.textContent = t.hero.signal;
+    if (heroButton) {
+      const heroButtonIcon = heroButton.querySelector('.cta__icon');
+      if (heroButtonIcon) {
+        Array.from(heroButton.childNodes).forEach(node => {
+          if (node.nodeType === 3) node.remove();
+        });
+        heroButton.appendChild(document.createTextNode(t.hero.button));
+      }
+    }
+    
+    // SERVICES SECTION
+    const servicesTitle = document.querySelector('.services__title');
+    if (servicesTitle) servicesTitle.textContent = t.services.title;
+    
+    // Marketing service
+    const marketingName = document.querySelector('[data-service="marketing"] .services__name');
+    const marketingItems = document.querySelectorAll('[data-service="marketing"] .services__content li');
+    if (marketingName) marketingName.textContent = t.services.marketing.name;
+    marketingItems.forEach((item, i) => {
+      if (t.services.marketing.items[i]) item.textContent = t.services.marketing.items[i];
+    });
+    
+    // Sistemas service
+    const sistemasName = document.querySelector('[data-service="sistemas"] .services__name');
+    const sistemasItems = document.querySelectorAll('[data-service="sistemas"] .services__content li');
+    if (sistemasName) sistemasName.textContent = t.services.sistemas.name;
+    sistemasItems.forEach((item, i) => {
+      if (t.services.sistemas.items[i]) item.textContent = t.services.sistemas.items[i];
+    });
+    
+    // Desarrollo service
+    const desarrolloName = document.querySelector('[data-service="desarrollo"] .services__name');
+    const desarrolloItems = document.querySelectorAll('[data-service="desarrollo"] .services__content li');
+    if (desarrolloName) desarrolloName.textContent = t.services.desarrollo.name;
+    desarrolloItems.forEach((item, i) => {
+      if (t.services.desarrollo.items[i]) item.textContent = t.services.desarrollo.items[i];
+    });
+    
+    // Diseno service
+    const disenoName = document.querySelector('[data-service="diseno"] .services__name');
+    const disenoItems = document.querySelectorAll('[data-service="diseno"] .services__content li');
+    if (disenoName) disenoName.textContent = t.services.diseno.name;
+    disenoItems.forEach((item, i) => {
+      if (t.services.diseno.items[i]) item.textContent = t.services.diseno.items[i];
+    });
+    
+    // GLOBAL SECTION
+    const globalTitle = document.querySelector('.global__title');
+    if (globalTitle) globalTitle.textContent = t.global.title;
+    document.querySelectorAll('.global__meta').forEach(meta => {
+      meta.textContent = t.global.meta;
+    });
+    
+    // WORKS SECTION
+    const worksTitle = document.querySelector('.works__title');
+    const worksButton = document.querySelector('.works__button');
+    if (worksTitle) worksTitle.textContent = t.works.title;
+    if (worksButton) worksButton.textContent = t.works.button;
+    
+    // TESTIMONIALS SECTION
+    const testimonialsTitle = document.querySelector('.testimonials__title');
+    const testimonialsProfile = document.querySelector('[data-profile-text]');
+    if (testimonialsTitle) testimonialsTitle.textContent = t.testimonials.title;
+    if (testimonialsProfile) testimonialsProfile.textContent = t.testimonials.profileText;
+    
+    // FAQ SECTION
+    const faqTitle = document.querySelector('.faq__title');
+    if (faqTitle) faqTitle.textContent = t.faq.title;
+    document.querySelectorAll('.faq__question span:first-child').forEach((q, i) => {
+      if (t.faq.questions[i]) q.textContent = t.faq.questions[i];
+    });
+    document.querySelectorAll('.faq__answer p').forEach((a, i) => {
+      if (t.faq.answers[i]) a.textContent = t.faq.answers[i];
+    });
+    
+    // CTA PANEL SECTION
+    const ctaPanelTitle = document.querySelector('.cta-panel__title');
+    const ctaPanelSubtitle = document.querySelector('.cta-panel__subtitle');
+    const ctaPanelButton = document.querySelector('.cta-panel__button');
+    if (ctaPanelTitle) ctaPanelTitle.textContent = t.ctaPanel.title;
+    if (ctaPanelSubtitle) ctaPanelSubtitle.textContent = t.ctaPanel.subtitle;
+    if (ctaPanelButton) ctaPanelButton.textContent = t.ctaPanel.button;
+    
+    // SECONDARY PAGES (marketing, diseno, desarrollo)
+    const pageTitle = document.querySelector('.page__title');
+    const pageSubtitle = document.querySelector('.page__subtitle');
+    const pageText = document.querySelector('.page__text');
+    
+    if (pageTitle && pageSubtitle) {
+      const path = window.location.pathname.toLowerCase();
+      if (path.includes('/marketing/')) {
+        pageTitle.textContent = t.pages.marketing.title;
+        pageSubtitle.textContent = t.pages.marketing.subtitle;
+      } else if (path.includes('/diseno/')) {
+        pageTitle.textContent = t.pages.diseno.title;
+        pageSubtitle.textContent = t.pages.diseno.subtitle;
+        if (pageText) pageText.textContent = t.pages.diseno.text;
+      } else if (path.includes('/desarrollo/')) {
+        pageTitle.textContent = t.pages.desarrollo.title;
+        pageSubtitle.textContent = t.pages.desarrollo.subtitle;
+      }
+    }
+    
+    // PORTFOLIO PAGE
+    const portfolioEyebrow = document.querySelector('.portfolio__eyebrow');
+    const portfolioMeta = document.querySelector('.portfolio__meta');
+    const portfolioPitch = document.querySelector('.portfolio__pitch');
+    const filterPanelTitle = document.querySelector('.filter-panel__title');
+    
+    if (portfolioEyebrow) portfolioEyebrow.textContent = t.portfolio.eyebrow;
+    if (portfolioMeta) portfolioMeta.textContent = t.portfolio.meta;
+    if (portfolioPitch) portfolioPitch.textContent = t.portfolio.pitch;
+    if (filterPanelTitle) filterPanelTitle.textContent = t.portfolio.filterTitle;
+    
+    document.querySelectorAll('.filter summary').forEach(summary => {
+      const text = summary.textContent.trim().toLowerCase();
+      if (text.includes('industria')) {
+        summary.childNodes[0].textContent = t.portfolio.industries + '\n              ';
+      } else if (text.includes('servicio')) {
+        summary.childNodes[0].textContent = t.portfolio.services + '\n              ';
+      } else if (text.includes('ciudad')) {
+        summary.childNodes[0].textContent = t.portfolio.cities + '\n              ';
+      }
+    });
+    
+    // CONTACT PAGE
+    const contactTitle = document.querySelector('.contact__title');
+    const contactSubtitle = document.querySelector('.contact__subtitle');
+    const contactChecklist = document.querySelectorAll('.contact__list li');
+    
+    if (contactTitle) contactTitle.textContent = t.contact.title;
+    if (contactSubtitle) contactSubtitle.textContent = t.contact.subtitle;
+    contactChecklist.forEach((item, i) => {
+      if (t.contact.checklist[i]) {
+        const svg = item.querySelector('.contact__check');
+        if (svg) {
+          item.innerHTML = '';
+          item.appendChild(svg);
+          item.appendChild(document.createTextNode(t.contact.checklist[i]));
+        }
+      }
+    });
+    
+    // Contact form
+    const formLabels = document.querySelectorAll('.field__label');
+    const formInputs = document.querySelectorAll('.field input, .field textarea');
+    const formButton = document.querySelector('.form__button');
+    
+    formLabels.forEach(label => {
+      const parent = label.closest('.field');
+      const input = parent ? parent.querySelector('input, textarea') : null;
+      
+      if (input) {
+        const name = input.getAttribute('name');
+        if (name === 'nombre') {
+          label.textContent = t.contact.form.nombre;
+          input.setAttribute('placeholder', t.contact.form.nombrePlaceholder);
+        } else if (name === 'apellido') {
+          label.textContent = t.contact.form.apellido;
+          input.setAttribute('placeholder', t.contact.form.apellidoPlaceholder);
+        } else if (name === 'industria') {
+          label.textContent = t.contact.form.industria;
+          input.setAttribute('placeholder', t.contact.form.industriaPlaceholder);
+        } else if (name === 'email') {
+          label.textContent = t.contact.form.email;
+          input.setAttribute('placeholder', t.contact.form.emailPlaceholder);
+        } else if (name === 'mensaje') {
+          label.textContent = t.contact.form.mensaje;
+          input.setAttribute('placeholder', t.contact.form.mensajePlaceholder);
+        }
+      }
+    });
+    
+    if (formButton) formButton.textContent = t.contact.form.button;
+    
+    // FOOTER
+    const footerHelp = document.querySelector('.site-footer__eyebrow');
+    const footerCall = document.querySelector('.site-footer__title');
+    const footerLegal = document.querySelector('.site-footer__legal');
+    
+    if (footerHelp) footerHelp.textContent = t.footer.help;
+    if (footerCall) footerCall.textContent = t.footer.call;
+    if (footerLegal) footerLegal.textContent = t.footer.legal;
+    
+    // Update HTML lang attribute
+    document.documentElement.setAttribute('lang', lang);
+    
+    // Store preference
+    try {
+      localStorage.setItem('preferredLanguage', lang);
+    } catch (e) {
+      // Ignore storage failures
+    }
+  };
+  
+  // Load saved language preference
+  const loadLanguage = () => {
+    try {
+      const savedLang = localStorage.getItem('preferredLanguage');
+      if (savedLang && translations[savedLang]) {
+        updateLanguage(savedLang);
+        return;
+      }
+    } catch (e) {
+      // Ignore storage failures
+    }
+    
+    // Set initial state without updating content (content is already in Spanish in HTML)
+    langToggle.dataset.lang = 'es';
+    const flag = langToggle.querySelector('.lang-toggle__flag');
+    const label = langToggle.querySelector('.lang-toggle__label');
+    if (flag) {
+      flag.innerHTML = '<svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="4.67" fill="#74ACDF"/><rect y="4.67" width="20" height="4.67" fill="#FFFFFF"/><rect y="9.33" width="20" height="4.67" fill="#74ACDF"/></svg>';
+    }
+    if (label) label.textContent = 'ESP';
+  };
+  
+  // Toggle language on click
+  langToggle.addEventListener('click', () => {
+    const currentLang = langToggle.dataset.lang || 'es';
+    const newLang = currentLang === 'es' ? 'en' : 'es';
+    updateLanguage(newLang);
+  });
+  
+  // Initialize
+  loadLanguage();
+}
